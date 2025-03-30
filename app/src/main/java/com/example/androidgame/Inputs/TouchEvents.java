@@ -12,7 +12,7 @@ import java.sql.SQLOutput;
 
 public class TouchEvents {
     private GamePanel gamePanel;
-    private float xCenter = 250, yCenter = 1200, radius = 150;
+    private float xCenter = 250, yCenter = 800, radius = 150;
     private Paint circlePaint, yellowPaint;
     private float xTouch, yTouch;
     private boolean touchDown;
