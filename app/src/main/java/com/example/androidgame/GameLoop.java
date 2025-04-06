@@ -1,9 +1,10 @@
+// File: com/example/androidgame/GameLoop.java
 package com.example.androidgame;
 
 public class GameLoop implements Runnable {
     private Thread gameThread;
     private GamePanel gamePanel;
-    private volatile boolean running = false; // Flag to control the game loop
+    private volatile boolean running = false;
 
     public GameLoop(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -19,15 +20,14 @@ public class GameLoop implements Runnable {
 
         while (running) {
             long nowDelta = System.nanoTime();
-            double timeSinceLastDelta = nowDelta - lastDelta;
-            double delta = timeSinceLastDelta / nanoSec;
+            double delta = (nowDelta - lastDelta) / (double) nanoSec;
             gamePanel.update(delta);
             gamePanel.render();
             lastDelta = nowDelta;
             fps++;
             long now = System.currentTimeMillis();
             if (now - lastFPScheck >= 1000) {
-                // System.out.println("FPS: " + fps);
+                // Optionally log FPS here.
                 fps = 0;
                 lastFPScheck += 1000;
             }
@@ -39,7 +39,6 @@ public class GameLoop implements Runnable {
         gameThread.start();
     }
 
-    // This method stops the game loop
     public void stopGameLoop() {
         running = false;
         try {
